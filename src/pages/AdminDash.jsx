@@ -1,24 +1,25 @@
 // src/pages/AdminDash.jsx
-import React, { useEffect, useState } from "react";
-import { FaUsers, FaTools, FaCalendarCheck, FaLightbulb } from "react-icons/fa";
+import axios from "axios";
+import { BarElement, CategoryScale, Chart as ChartJS, LinearScale } from 'chart.js';
+import { useEffect, useState } from "react";
+import { Bar } from "react-chartjs-2";
+import { FaCalendarCheck, FaLightbulb, FaTools, FaUsers } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import { Bar } from "react-chartjs-2";
-import Sidebar from "../components/admin/Sidebar"; // Import Sidebar
-import { Chart as ChartJS, BarElement, CategoryScale, LinearScale } from 'chart.js';
 import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
+    CartesianGrid,
+    Cell,
+    Legend,
+    Line,
+    LineChart,
+    Pie,
+    PieChart,
+    ResponsiveContainer,
+    Tooltip,
+    XAxis,
+    YAxis,
 } from "recharts";
 ChartJS.register(BarElement, CategoryScale, LinearScale);
-import { PieChart, Pie, Cell } from "recharts";
 
 const AdminDash = () => {
   const { user } = useSelector((state) => state.auth);
@@ -34,7 +35,7 @@ const AdminDash = () => {
     const fetchGrowthData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/admin/analytics/booking-growth?year=${selectedYear}`
+          `https://builtmate-serverside.onrender.com/api/admin/analytics/booking-growth?year=${selectedYear}`
         );
         setMonthlyData(response.data.monthlyData);
       } catch (error) {
@@ -69,7 +70,7 @@ const AdminDash = () => {
 
   const fetchDashboardData = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/admin/dashboard", {
+      const res = await axios.get("https://builtmate-serverside.onrender.com/api/admin/dashboard", {
         headers: {
           Authorization: `Bearer ${user.token}`,
         },

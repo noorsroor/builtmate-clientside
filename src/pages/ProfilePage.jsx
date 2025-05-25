@@ -1,12 +1,11 @@
-import { useEffect, useState } from "react";
 import axios from "axios";
+import { MapPin, PencilLine } from 'lucide-react';
+import { useEffect, useState } from "react";
+import toast, { Toaster } from 'react-hot-toast';
 import { useSelector } from 'react-redux';
 import { useNavigate } from "react-router-dom";
-import { MapPin,PencilLine } from 'lucide-react';
-import PaymentModal from "../components/PaymentModal";
 import BookingDetailsModal from "../components/BookingDetailsModal";
 import PaymentModalWrapper from "../components/PaymentModal";
-import toast, { Toaster } from 'react-hot-toast';
 
 export default function ProfilePage() {
   const [activeTab, setActiveTab] = useState("info");
@@ -77,7 +76,7 @@ const [backgroundImagePreview, setBackgroundImagePreview] = useState(null);
   // ✅ Fetch user bookings from backend
   const fetchBookings = async () => {
     try {
-      const res = await axios.get(`http://localhost:5000/api/bookings/user/${user._id}`);
+      const res = await axios.get(`https://builtmate-serverside.onrender.com/api/bookings/user/${user._id}`);
       setMyBookings(res.data);
     } catch (err) {
       console.error("Failed to fetch bookings:", err.response?.data || err.message);
@@ -102,7 +101,7 @@ const [backgroundImagePreview, setBackgroundImagePreview] = useState(null);
 
   useEffect(() => {
     const fetchBookings = async () => {
-      const res = await axios.get(`http://localhost:5000/api/bookings/pro/${proId}`);
+      const res = await axios.get(`https://builtmate-serverside.onrender.com/api/bookings/pro/${proId}`);
       setBookings(res.data);
     };
     fetchBookings();
@@ -110,11 +109,11 @@ const [backgroundImagePreview, setBackgroundImagePreview] = useState(null);
 
   const handleQuoteSubmit = async (bookingId, price) => {
     toast.promise(
-      axios.put(`http://localhost:5000/api/bookings/quote/${bookingId}`, {
+      axios.put(`https://builtmate-serverside.onrender.com/api/bookings/quote/${bookingId}`, {
         quotePrice: price,
       }).then(async () => {
         // Refreshing bookings after successful quote submission
-        const res = await axios.get(`http://localhost:5000/api/bookings/pro/${proId}`);
+        const res = await axios.get(`https://builtmate-serverside.onrender.com/api/bookings/pro/${proId}`);
         setBookings(res.data);
       }),
       {
@@ -126,11 +125,11 @@ const [backgroundImagePreview, setBackgroundImagePreview] = useState(null);
   };
   
   useEffect(() => {
-    axios.get(`http://localhost:5000/api/users/${user._id}`)
+    axios.get(`https://builtmate-serverside.onrender.com/api/users/${user._id}`)
       .then(res =>{ setUserData(res.data.user); setUserproData(res.data.professionalData)})
       .catch(err => console.error(err));
 
-    axios.get(`http://localhost:5000/api/users/bookmarks/${user._id}`)
+    axios.get(`https://builtmate-serverside.onrender.com/api/users/bookmarks/${user._id}`)
       .then(res => setBookmarks(res.data))
       .catch(err => console.error(err));
   }, [user._id]);
@@ -226,7 +225,7 @@ const [backgroundImagePreview, setBackgroundImagePreview] = useState(null);
     
     // Send PUT request with FormData
     axios
-      .put(`http://localhost:5000/api/users/${user._id}`, formData, {
+      .put(`https://builtmate-serverside.onrender.com/api/users/${user._id}`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import { CardElement, Elements, useElements, useStripe } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
-import { CardElement, Elements, useStripe, useElements } from '@stripe/react-stripe-js';
 import axios from 'axios';
-import {  useSelector } from 'react-redux';
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
 
 const stripePromise = loadStripe('pk_test_51R86Nh06zyZp2TkrngAmWLN92kOWKyWWLUO97ETLB3XjAkvxce7rmlrfLqPGwcR2bPtkR7XJmhF23BTXL6HpgXHB00POuEVLLX');
 
@@ -35,7 +35,7 @@ const PaymentForm = ({ plan, billingCycle, onSuccess, onCancel, planDetails, pri
       
         try {
           // 1. Create Payment Intent
-          const { data } = await axios.post("http://localhost:5000/api/payments/charge", {
+          const { data } = await axios.post("https://builtmate-serverside.onrender.com/api/payments/charge", {
             userId: loggedInUserId,
             planType: plan,
             amount: price*100
@@ -65,12 +65,12 @@ const PaymentForm = ({ plan, billingCycle, onSuccess, onCancel, planDetails, pri
           if (error) throw error;
       
         //   // 3. Confirm Payment with Backend
-        //   await axios.post("http://localhost:5000/api/subscriptions/", {
+        //   await axios.post("https://builtmate-serverside.onrender.com/api/subscriptions/", {
         //     paymentId: data.paymentId
         //   });
       
           // 4. Create Subscription
-          await axios.post("http://localhost:5000/api/subscriptions", {
+          await axios.post("https://builtmate-serverside.onrender.com/api/subscriptions", {
             userId: loggedInUserId,
             plan,
             billingCycle,

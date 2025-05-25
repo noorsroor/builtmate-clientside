@@ -1,6 +1,6 @@
-import React, { useState, useRef } from 'react';
-import axios from 'axios'
-import {  useSelector } from 'react-redux';
+import axios from 'axios';
+import { useRef, useState } from 'react';
+import { useSelector } from 'react-redux';
 import Swal from "sweetalert2";
 
 const AddProjectForm = () => {
@@ -114,7 +114,7 @@ const AddProjectForm = () => {
         formData.append("images", dataForm.images[i]);
       }
 
-      const res = await axios.post("http://localhost:5000/api/projects", formData, {
+      const res = await axios.post("https://builtmate-serverside.onrender.com/api/projects", formData, {
         headers: { "Content-Type": "multipart/form-data" }
       });
 

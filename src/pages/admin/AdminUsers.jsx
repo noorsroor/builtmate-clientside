@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Sidebar from '../../components/admin/Sidebar';
 
 function AdminUsers() {
   const [users, setUsers] = useState([]);
@@ -17,7 +16,7 @@ function AdminUsers() {
 
   const fetchUsers = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/admin/users');
+      const res = await axios.get('https://builtmate-serverside.onrender.com/api/admin/users');
       setUsers(res.data);
     } catch (error) {
       console.error(error);
@@ -27,7 +26,7 @@ function AdminUsers() {
 
   const handleRoleChange = async (userId, newRole) => {
     try {
-      await axios.put(`http://localhost:5000/api/admin/users/${userId}/role`, { role: newRole });
+      await axios.put(`https://builtmate-serverside.onrender.com/api/admin/users/${userId}/role`, { role: newRole });
       toast.success('Role updated successfully');
       fetchUsers();
     } catch (error) {
@@ -39,7 +38,7 @@ function AdminUsers() {
   const handleDelete = async (userId) => {
     if (!window.confirm('Are you sure you want to delete this user?')) return;
     try {
-      await axios.delete(`http://localhost:5000/api/admin/users/${userId}`);
+      await axios.delete(`https://builtmate-serverside.onrender.com/api/admin/users/${userId}`);
       toast.success('User deleted successfully');
       fetchUsers();
     } catch (error) {

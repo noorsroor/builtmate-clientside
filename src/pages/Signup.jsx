@@ -20,7 +20,7 @@
 //   const handleSubmit = async (e) => {
 //     e.preventDefault();
 //     try {
-//          await axios.post("http://localhost:5000/api/auth/register", formData, {
+//          await axios.post("https://builtmate-serverside.onrender.com/api/auth/register", formData, {
 //         withCredentials: true,
 //       });
 //       navigate("/login");
@@ -169,7 +169,7 @@
 //           address: formData.address,
 //         };
 //         console.log(signupData);
-//         await axios.post("http://localhost:5000/api/auth/register", signupData, {
+//         await axios.post("https://builtmate-serverside.onrender.com/api/auth/register", signupData, {
 //           withCredentials: true
 //         });
         
@@ -214,16 +214,15 @@
 //           </div>
 //         </div>
 //       </div>
-import React, { useEffect, useState } from 'react';
-import { ChevronDown, Eye, EyeOff, Globe,Check } from 'lucide-react';
-import logo from "../assets/images/logo.png";
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { Check, ChevronDown, Eye, EyeOff, Globe } from 'lucide-react';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
-import { setLanguage } from '../redux/languageSlice';
-import { FcGoogle } from "react-icons/fc";
+import { useNavigate } from 'react-router-dom';
 import Swal from "sweetalert2";
+import logo from "../assets/images/logo.png";
+import { setLanguage } from '../redux/languageSlice';
 
 
 const Signup = () => {
@@ -438,7 +437,7 @@ const Signup = () => {
         address: formData.address,
       };
 
-      const res=await axios.post("http://localhost:5000/api/auth/register", signupData, {
+      const res=await axios.post("https://builtmate-serverside.onrender.com/api/auth/register", signupData, {
         withCredentials: true
       });
       Swal.fire({

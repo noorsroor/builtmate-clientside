@@ -1,10 +1,10 @@
 // PaymentModal.jsx
-import { useState } from "react";
-import { FaPaypal, FaStripe } from "react-icons/fa";
-import { CardElement, Elements, useStripe, useElements } from "@stripe/react-stripe-js";
+import { CardElement, Elements, useElements, useStripe } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import axios from "axios";
+import { useState } from "react";
 import toast, { Toaster } from 'react-hot-toast';
+import { FaPaypal, FaStripe } from "react-icons/fa";
 
 const stripePromise = loadStripe("pk_test_51R86Nh06zyZp2TkrngAmWLN92kOWKyWWLUO97ETLB3XjAkvxce7rmlrfLqPGwcR2bPtkR7XJmhF23BTXL6HpgXHB00POuEVLLX");
 
@@ -67,7 +67,7 @@ const PaymentModal = ({ booking, onClose, onPaymentSuccess }) => {
       const fakeTransactionId = "txn_" + Date.now();
 
       const res = await axios.post(
-        `http://localhost:5000/api/bookings/pay/${booking._id}`,
+        `https://builtmate-serverside.onrender.com/api/bookings/pay/${booking._id}`,
         {
           method: paymentMethod,
           transactionId: fakeTransactionId,

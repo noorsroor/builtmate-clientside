@@ -1,6 +1,6 @@
 // src/pages/ContactPage.jsx
-import { useState } from "react";
 import axios from "axios";
+import { useState } from "react";
 
 // Color constants based on provided palette
 const COLORS = {
@@ -57,7 +57,7 @@ const ContactPage = () => {
     setResponse("");
     
     try {
-      const res = await axios.post("http://localhost:5000/api/contact", form);
+      const res = await axios.post("https://builtmate-serverside.onrender.com/api/contact", form);
       setResponse("Thank you! Your message has been sent successfully.");
       setResponseType("success");
       setForm({ name: "", email: "", subject: "", message: "" });

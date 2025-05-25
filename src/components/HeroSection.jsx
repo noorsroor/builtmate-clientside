@@ -1,17 +1,15 @@
-import React from "react";
-import heroImage from "../assets/images/hero.png";
-import heroBackground from "../assets/images/hero-back.jpg";
-import { FaSearch, FaPaperPlane } from "react-icons/fa";
-import { useTranslation } from "react-i18next";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination, Navigation } from "swiper/modules";
-import { useSelector } from "react-redux";
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
-import  { useState } from "react";
 import axios from "axios";
+import { useState } from "react";
+import { useTranslation } from "react-i18next";
+import { FaPaperPlane, FaSearch } from "react-icons/fa";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import { Autoplay, Navigation, Pagination } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+import heroBackground from "../assets/images/hero-back.jpg";
 
 import img1 from "../assets/images/hero.png";
 import img2 from "../assets/images/hero2.png";
@@ -31,7 +29,7 @@ const HeroSection = () => {
 
     if (e.target.value.length > 1) {
         try {
-            const response = await axios.get(`http://localhost:5000/api/professionals/search?query=${e.target.value}`);
+            const response = await axios.get(`https://builtmate-serverside.onrender.com/api/professionals/search?query=${e.target.value}`);
             setSearchResults(response.data.professionals);
         } catch (error) {
             console.error("Search Error: ", error);

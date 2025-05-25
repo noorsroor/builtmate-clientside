@@ -1,14 +1,14 @@
-import React, { useMemo, useState, useEffect } from "react";
 import {
-  useReactTable,
-  getCoreRowModel,
-  getPaginationRowModel,
-  getFilteredRowModel,
-  getSortedRowModel,
-  flexRender,
+    flexRender,
+    getCoreRowModel,
+    getFilteredRowModel,
+    getPaginationRowModel,
+    getSortedRowModel,
+    useReactTable,
 } from "@tanstack/react-table";
 import axios from "axios";
 import moment from "moment";
+import { useEffect, useMemo, useState } from "react";
 import Modal from "../../components/Modal"; // Your modal component
 import StatusBadge from "../../components/StatusBadge"; // Optional
 
@@ -22,7 +22,7 @@ const AdminProfessionals = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await axios.get(`http://localhost:5000/api/admin/professionals?search=${search}&status=${statusFilter}&sort=${sortByDate}`);
+      const res = await axios.get(`https://builtmate-serverside.onrender.com/api/admin/professionals?search=${search}&status=${statusFilter}&sort=${sortByDate}`);
       setData(res.data.professionals);
     };
     fetchData();
@@ -71,7 +71,7 @@ const AdminProfessionals = () => {
             const newStatus = e.target.value;
             setUpdating(true);
             try {
-              await axios.patch(`http://localhost:5000/api/admin/professionals/${row.original._id}/status`, {
+              await axios.patch(`https://builtmate-serverside.onrender.com/api/admin/professionals/${row.original._id}/status`, {
                 status: newStatus,
               });
               // Re-fetch or optimistically update

@@ -1,15 +1,15 @@
-import React, { useEffect, useMemo, useState } from "react";
+import {
+    flexRender,
+    getCoreRowModel,
+    getFilteredRowModel,
+    getPaginationRowModel,
+    getSortedRowModel,
+    useReactTable,
+} from "@tanstack/react-table";
 import axios from "axios";
 import moment from "moment";
+import { useEffect, useMemo, useState } from "react";
 import Modal from "../../components/Modal";
-import {
-  useReactTable,
-  getCoreRowModel,
-  getFilteredRowModel,
-  getPaginationRowModel,
-  getSortedRowModel,
-  flexRender,
-} from "@tanstack/react-table";
 
 const AdminBookings = () => {
   const [bookings, setBookings] = useState([]);
@@ -20,7 +20,7 @@ const AdminBookings = () => {
 
   useEffect(() => {
     const fetchBookings = async () => {
-      const res = await axios.get(`http://localhost:5000/api/admin/bookings?search=${search}&status=${statusFilter}&sort=${sortByDate}`);
+      const res = await axios.get(`https://builtmate-serverside.onrender.com/api/admin/bookings?search=${search}&status=${statusFilter}&sort=${sortByDate}`);
       setBookings(res.data.bookings);
     };
     fetchBookings();

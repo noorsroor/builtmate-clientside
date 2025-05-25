@@ -1,13 +1,12 @@
 
 import axios from "axios";
-import { useDispatch } from "react-redux";
-import { loginSuccess } from "../redux/authSlice";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { Eye, EyeOff, Globe } from "lucide-react";
-import logo from "../assets/images/logo.png";
-import { FcGoogle } from "react-icons/fc";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import logo from "../assets/images/logo.png";
+import { loginSuccess } from "../redux/authSlice";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -44,7 +43,7 @@ const Login = () => {
     e.preventDefault();
     try {
       const { data } = await axios.post(
-        "http://localhost:5000/api/auth/login", 
+        "https://builtmate-serverside.onrender.com/api/auth/login", 
         { email: formData.email, password: formData.password }, 
         { withCredentials: true }
       );
@@ -66,7 +65,7 @@ const Login = () => {
     e.preventDefault();
     try {
       // This would typically be an API call to send reset instructions
-      await axios.post("http://localhost:5000/api/auth/forgot-password", { email: resetEmail });
+      await axios.post("https://builtmate-serverside.onrender.com/api/auth/forgot-password", { email: resetEmail });
       setError(null);
       setForgotPasswordStage(2);
     } catch (err) {
@@ -77,7 +76,7 @@ const Login = () => {
   const handleResetCodeSubmit = async  (e) => {
     e.preventDefault();
   try {
-      await axios.post("http://localhost:5000/api/auth/verify-otp", {
+      await axios.post("https://builtmate-serverside.onrender.com/api/auth/verify-otp", {
       email: resetEmail,
       otp: resetCode.join("")
     });
@@ -92,7 +91,7 @@ const Login = () => {
     e.preventDefault();
     try {
       // API call to reset password
-      await axios.post("http://localhost:5000/api/auth/reset-password", {
+      await axios.post("https://builtmate-serverside.onrender.com/api/auth/reset-password", {
         email: resetEmail,
         newPassword: newPassword
       });

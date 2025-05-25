@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
 import axios from 'axios';
-import img1 from "../assets/images/form1.png"
-import img2 from "../assets/images/form2.png"
-import img3 from "../assets/images/form3.png"
+import { useEffect, useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
+import { useSelector } from 'react-redux';
+import img1 from "../assets/images/form1.png";
+import img2 from "../assets/images/form2.png";
+import img3 from "../assets/images/form3.png";
 
 const ProJoinForm = () => {
   const [currentStep, setCurrentStep] = useState(1);
@@ -107,7 +107,7 @@ const ProJoinForm = () => {
         });
       }
   
-      const res = await axios.post("http://localhost:5000/api/professionals/create", form, {
+      const res = await axios.post("https://builtmate-serverside.onrender.com/api/professionals/create", form, {
         headers: {
           "Content-Type": "multipart/form-data"
         }

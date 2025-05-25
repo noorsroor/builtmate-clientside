@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import { FaMapMarkerAlt } from 'react-icons/fa';
+import React, { useEffect, useState } from 'react';
 import { BsEnvelopeFill } from 'react-icons/bs';
+import { FaMapMarkerAlt } from 'react-icons/fa';
 import { PiSealCheckFill } from "react-icons/pi";
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import QuoteModal from "./QuoteModal";
 
 const ProList = ({ location, category, searchQuery }) => {
@@ -23,7 +23,7 @@ const ProList = ({ location, category, searchQuery }) => {
 
   const checkIsPremium = async (proId) => {
     try {
-      const res = await axios.get(`http://localhost:5000/api/subscriptions/is-premium/${proId}`);
+      const res = await axios.get(`https://builtmate-serverside.onrender.com/api/subscriptions/is-premium/${proId}`);
       return res.data.isPremium;
     } catch (err) {
       console.error("Error checking premium status:", err);
@@ -34,7 +34,7 @@ const ProList = ({ location, category, searchQuery }) => {
   const fetchProfessionals = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('http://localhost:5000/api/professionals', {
+      const response = await axios.get('https://builtmate-serverside.onrender.com/api/professionals', {
         params: { 
           page, 
           category, 

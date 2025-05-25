@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useEffect, useState } from 'react';
 import { useSelector } from "react-redux";
 import { useNavigate } from 'react-router-dom';
 
@@ -23,7 +23,7 @@ export default function IdeasList({category}) {
 
 const fetchProjects = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/projects", {
+      const res = await axios.get("https://builtmate-serverside.onrender.com/api/projects", {
         params: {
           page,
           category: category || undefined,
@@ -51,7 +51,7 @@ const fetchProjects = async () => {
 
   const toggleBookmark = async () => {
     try {
-      const res = await axios.post("http://localhost:5000/api/bookmarks/toggle", {
+      const res = await axios.post("https://builtmate-serverside.onrender.com/api/bookmarks/toggle", {
         userId:user._id,
         itemId:itemId,
         type:"project",
@@ -65,7 +65,7 @@ const fetchProjects = async () => {
   useEffect(() => {
     const fetchBookmarkStatus = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/bookmarks/${userId}`);
+        const res = await axios.get(`https://builtmate-serverside.onrender.com/api/bookmarks/${userId}`);
         const bookmarks = res.data;
 
         const isSaved = type === "project"

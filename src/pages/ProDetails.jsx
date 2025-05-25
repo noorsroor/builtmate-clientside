@@ -1,10 +1,10 @@
-import { useEffect, useState, useRef } from "react";
-import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useSelector } from "react-redux";
-import ReviewModal from '../components/ReviewModal';
-import QuoteModal from "../components/QuoteModal";
+import { useEffect, useRef, useState } from "react";
 import toast, { Toaster } from 'react-hot-toast';
+import { useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+import QuoteModal from "../components/QuoteModal";
+import ReviewModal from '../components/ReviewModal';
 
 const ProDetails = () => {
   const { id } = useParams();
@@ -31,7 +31,7 @@ const ProDetails = () => {
   useEffect(() => {
     const fetchBookmarkStatus = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/bookmarks/${userId}`);
+        const res = await axios.get(`https://builtmate-serverside.onrender.com/api/bookmarks/${userId}`);
         const bookmarks = res.data;
 
         const isSaved = type === "professional"
@@ -49,7 +49,7 @@ const ProDetails = () => {
 
   const toggleBookmark = async () => {
     try {
-      const res = await axios.post("http://localhost:5000/api/bookmarks/toggle", {
+      const res = await axios.post("https://builtmate-serverside.onrender.com/api/bookmarks/toggle", {
         userId:user._id,
         itemId:id,
         type:"professional",
@@ -67,7 +67,7 @@ const ProDetails = () => {
   
   const handleSubmit = async (reviewData) => {
     try {
-      const res = await axios.post("http://localhost:5000/api/reviews", {
+      const res = await axios.post("https://builtmate-serverside.onrender.com/api/reviews", {
         userId: user._id,
         professionalId: id,
         rating: reviewData.rating,
@@ -87,7 +87,7 @@ const ProDetails = () => {
 useEffect(() => {
   const fetchProDetails = async () => {
     try {
-      const response = await axios.get(`http://localhost:5000/api/professionals/${id}`);
+      const response = await axios.get(`https://builtmate-serverside.onrender.com/api/professionals/${id}`);
       
       // Transform data to match expected frontend structure
       const transformedData = {

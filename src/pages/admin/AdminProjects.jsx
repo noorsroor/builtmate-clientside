@@ -1,14 +1,14 @@
-import React, { useEffect, useMemo, useState } from "react";
-import axios from "axios";
-import Modal from "../../components/Modal";
-import moment from "moment";
 import {
-  useReactTable,
-  getCoreRowModel,
-  getFilteredRowModel,
-  getPaginationRowModel,
-  flexRender,
+    flexRender,
+    getCoreRowModel,
+    getFilteredRowModel,
+    getPaginationRowModel,
+    useReactTable,
 } from "@tanstack/react-table";
+import axios from "axios";
+import moment from "moment";
+import { useEffect, useMemo, useState } from "react";
+import Modal from "../../components/Modal";
 
 const AdminProjects = () => {
   const [projects, setProjects] = useState([]);
@@ -19,14 +19,14 @@ const AdminProjects = () => {
 
   useEffect(() => {
     const fetchProjects = async () => {
-      const res = await axios.get(`http://localhost:5000/api/admin/projects?search=${search}&status=${statusFilter}&sort=${sortByDate}`);
+      const res = await axios.get(`https://builtmate-serverside.onrender.com/api/admin/projects?search=${search}&status=${statusFilter}&sort=${sortByDate}`);
       setProjects(res.data.projects);
     };
     fetchProjects();
   }, [search, statusFilter, sortByDate]);
 
   const updateStatus = async (id, status) => {
-    await axios.put(`http://localhost:5000/api/admin/projects/${id}/status`, { status });
+    await axios.put(`https://builtmate-serverside.onrender.com/api/admin/projects/${id}/status`, { status });
     setProjects((prev) =>
       prev.map((p) => (p._id === id ? { ...p, status } : p))
     );

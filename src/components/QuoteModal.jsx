@@ -74,7 +74,7 @@ const QuoteModal = ({ onClose, professional, userId }) => {
     }
 
     toast.promise(
-      axios.post('http://localhost:5000/api/bookings', {
+      axios.post('https://builtmate-serverside.onrender.com/api/bookings', {
         user: userId,
         professional: professional._id,
         type: category,

@@ -1,6 +1,6 @@
 /// src/components/IdeasSection.jsx
-import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const IdeasSection = () => {
@@ -8,7 +8,7 @@ const IdeasSection = () => {
   const navigate= useNavigate()
 
   useEffect(() => {
-    axios.get("http://localhost:5000/api/home-projects")
+    axios.get("https://builtmate-serverside.onrender.com/api/home-projects")
       .then((res) => setProjects(res.data))
       .catch((err) => console.error(err));
   }, []);

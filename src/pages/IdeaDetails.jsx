@@ -1,9 +1,8 @@
-import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import IdeasList from '../components/IdeasList';
-import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { useNavigate, useParams } from 'react-router-dom';
+import IdeasList from '../components/IdeasList';
 
 export default function IdeaDetails() {
   const { id } = useParams();
@@ -20,7 +19,7 @@ export default function IdeaDetails() {
   useEffect(() => {
     const fetchProject = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/projects/${id}`);
+        const res = await axios.get(`https://builtmate-serverside.onrender.com/api/projects/${id}`);
         setIdea(res.data);
         setPro(res.data.professional)
         setLoading(false);

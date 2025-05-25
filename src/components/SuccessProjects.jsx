@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import { CheckCircle } from "lucide-react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const SuccessProjects = () => {
   const navigate = useNavigate();
@@ -12,7 +12,7 @@ const SuccessProjects = () => {
   useEffect(() => {
     const fetchProject = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/projects/${id}`);
+        const res = await axios.get(`https://builtmate-serverside.onrender.com/api/projects/${id}`);
         setIdea(res.data);
         setPro(res.data.professional.userId);
       } catch (err) {
