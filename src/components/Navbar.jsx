@@ -61,7 +61,7 @@ console.log(user)
 
   const handleJoinClick = () => {
     if (!user) {
-      navigate("/signup");
+      navigate("/login");
     } else {
       user.subscription ? navigate("/joinform") : navigate("/plans");
     }
@@ -233,7 +233,7 @@ console.log(user)
                 </div>
               ) : (
                 <Link
-                  to="/signup"
+                  to="/login"
                   className="bg-[#E7A624] font-bold flex items-center text-black py-2 text-[12px] px-5 rounded-full shadow-md transition duration-300 hover:bg-yellow-600 hover:shadow-lg"
                   style={{ boxShadow: '0 0 10px rgba(234, 179, 8, 0.5)' }}
                 >

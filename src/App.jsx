@@ -116,7 +116,7 @@ function App() {
       element: <Login/>
     },
     {
-      path:'/signup',
+      path:'/login/signup',
       element: <Signup/>
     },
     {
