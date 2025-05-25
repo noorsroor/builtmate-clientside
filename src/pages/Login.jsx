@@ -3,7 +3,7 @@ import axios from "axios";
 import { Eye, EyeOff, Globe } from "lucide-react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import logo from "../assets/images/logo.png";
 import { loginSuccess } from "../redux/authSlice";
@@ -199,9 +199,9 @@ const Login = () => {
         {/* Signup Link */}
         <div className="mt-4 text-center">
           <span className="text-gray-600">Don't have an account? </span>
-          <a href="/login/signup" className="text-yellow-600 font-medium hover:underline cursor-pointer">
+          <NavLink to="/signup" className="text-yellow-600 font-medium hover:underline cursor-pointer">
             Sign up
-          </a>
+          </NavLink>
         </div>
       </div>
     );
