@@ -219,7 +219,7 @@ import { Check, ChevronDown, Eye, EyeOff, Globe } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, NavLink } from 'react-router-dom';
 import Swal from "sweetalert2";
 import logo from "../assets/images/logo.png";
 import { setLanguage } from '../redux/languageSlice';
@@ -692,7 +692,7 @@ const Signup = () => {
           {/* Login Link */}
           <div className="mt-4 text-center">
             <span className="text-gray-600">Already have an account? </span>
-            <a href="/login" className="text-yellow-600 font-medium hover:underline">Log in</a>
+            <NavLink to="/login" className="text-yellow-600 font-medium hover:underline">Log in</NavLink>
           </div>
         </div>
       </div>

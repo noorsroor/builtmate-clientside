@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { FaPaperPlane, FaSearch } from "react-icons/fa";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -129,12 +129,12 @@ console.log(searchResults);
         <div className={`${
           isRTL ? " md:text-right" : " md:text-left"
         } text-center`}>
-          <a
-            href="../findPro"
+          <NavLink
+            to="../findPro"
             className="inline-block bg-black text-white text-center py-2 px-8 rounded-lg hover:scale-105 transition-transform"
           >
             {t("hero.getStarted")}
-          </a>
+          </NavLink>
         </div>
       </div>
 
